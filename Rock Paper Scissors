@@ -1,0 +1,64 @@
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)a
+---.__(___)
+'''
+
+#Write your code below this line 👇
+print ("Welcome to rock, paper scissors.")
+choice = input("What do you choose? Type 0 for Rock, 1 for Paper and 2 for Scissors. \n")
+cho = int(choice)
+if cho == 0:
+  print(f"You played \n {rock}")
+elif cho == 1:
+  print (f"You played \n {paper}")
+elif cho == 2:
+  print (f"You played \n {scissors}")
+  
+import random
+computer = random.randint(0,2)
+
+if computer == 0:
+  print(f"Compuer played \n {rock}")
+elif computer == 1:
+  print (f"Compuer played \n {paper}")
+elif computer == 2:
+  print (f"Compuer played \n {scissors}")
+
+if cho == 0 and computer == 2:
+  print ("You won!")
+elif cho == 1 and computer == 0:
+  print ("You won!")
+elif cho == 2 and computer == 1:
+  print ("You won!")
+elif cho == computer:
+  print ("It's a draw. Play again!")
+#elif cho == 0 and computer == 0:
+  #print ("It's a draw. Play again!")
+#elif cho == 1 and computer == 1:
+  #print ("It's a draw. Play again!")
+#elif cho == 2 and computer == 2:
+  #print ("It's a draw. Play again!")
+else:
+  print ("You lost the game!")
