@@ -1,0 +1,115 @@
+word_list = ["aardvark", "baboon", "camel"]
+
+#ASCII art from stages
+logo = ''' 
+ _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/    '''
+
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+
+
+#Randomly choose a word from the word_list and assign it to a variable called chosen_word.
+import random
+chosen_word = random.choice(word_list)
+print (chosen_word)
+
+#Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
+display = []
+world_lenght = (len(chosen_word))
+lives = 6
+
+
+#The goals is to great a variable with as much '_' as the letters in the chosen word 
+for _ in range(world_lenght):
+#or for letter in chosen_word:
+  display += '_'
+
+#Check if the letter the user guessed (guess) is one of the letters in the chosen_word and if it is, replace the particular _ with the letter
+
+end_of_game = False
+
+print (logo)
+while not end_of_game:
+  guess = input("Chose a letter").lower()
+  for position in range(world_lenght):
+    letter = chosen_word[position]
+    if letter == guess:
+      display[position] = letter
+
+  if guess not in chosen_word:
+    lives -= 1
+    if lives == 0:
+      end_of_game = True
+      print ("You lose")
+  
+  
+  if '_' not in display:
+    end_of_game = True
+    print ("You win!")
+  if lives == 0:
+    end_of_game = True
+    print ("You lose!")
+
+
+  print (stages[-lives-1])
