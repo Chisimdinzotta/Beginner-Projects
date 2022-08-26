@@ -1,0 +1,45 @@
+def add (n1, n2):
+  return n1 + n2
+
+def subtract (n1, n2):
+  return n1 - n2
+
+def multiply (n1, n2):
+  return n1 * n2
+
+def divide (n1, n2):
+  return n1 / n2
+
+operations = {
+  "+": add,
+  "-": subtract,
+  "/": divide,
+  "*": multiply  
+}
+
+def calculator ():
+  
+  num1 = float(input("What is the first number?: "))
+  for symbol in operations:
+    print (symbol)
+    
+  should_continue = True
+  
+  while should_continue:
+    chosen_symbol = (input ("Pick an operation from options:"))
+    num2 = float(input("What is the next number?: "))
+    #operations[chosen_symbol] provides the value the user has chosen from the dictionary. Note that each off the values aligns with the four fuctions created
+    #It could be add, subtract, divide or multiple (which are the values in the operations dictionary)
+    #answer in line 35 calls the function. Note there are 4 functions; def add (n1, n2), def subtract (n1, n2), def multiply (n1, n2) and def divide (n1, n2)
+    calculation_function = operations[chosen_symbol]
+    answer = calculation_function(num1, num2)
+    
+    print(f"{num1} {chosen_symbol} {num2} = {answer}")
+    next = (f"Type 'y' to continue with {answer} or 'n' to start a new calculation: ").lower()
+    if next == "y":
+      num1 = answer
+    else:
+      should_continue = False
+      calculator ()
+      
+calculator ()
