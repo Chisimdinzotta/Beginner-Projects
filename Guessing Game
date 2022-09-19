@@ -1,0 +1,29 @@
+import random
+
+print ("Welcome to the guessing game! \nI'm thinking of a number between 1 and 100")
+
+def game():
+  guess = random.choice(range(1,100))
+  #So we can see what the guess was and check if the program works
+  print (guess)
+  level = input ("Choose a difficulty. Type 'easy' or 'hard':")
+  if level == "easy":
+    life = 10
+  else:
+    life = 5
+  while life > 0:
+    print (f"You have {life} attempts remaining to guess the numer ")
+    players_guess = int(input("Make a guess:"))
+    if players_guess == guess:
+      print (f"Correct! The number I had in mind was {guess}")
+      return
+    if players_guess > guess:
+      life -= 1
+      print (f"Too high.")
+    if players_guess < guess:
+        life -= 1
+        print (f"Too low.")
+  else:
+    print (f"You have no attempt remaining. You lose! \nThe number I had in mind was {guess}")
+
+game()
