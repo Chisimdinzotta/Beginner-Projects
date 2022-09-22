@@ -1,0 +1,196 @@
+MENU = {
+    "espresso": {
+        "ingredients": {
+            "water": 50,
+            "coffee": 18,
+        },
+        "cost": 1.5,
+    },
+    "latte": {
+        "ingredients": {
+            "water": 200,
+            "milk": 150,
+            "coffee": 24,
+        },
+        "cost": 2.5,
+    },
+    "cappuccino": {
+        "ingredients": {
+            "water": 250,
+            "milk": 100,
+            "coffee": 24,
+        },
+        "cost": 3.0,
+    }
+}
+
+resources = {
+    "water": 300,
+    "milk": 200,
+    "coffee": 100,
+}
+
+espresso_ingredients = (MENU["espresso"]["ingredients"])
+espresso_water = (espresso_ingredients["water"])
+espresso_coffee = (espresso_ingredients["coffee"])
+espresso_cost = (MENU["espresso"]["cost"])
+
+latte_ingredients = (MENU["latte"]["ingredients"])
+latte_water = (latte_ingredients["water"])
+latte_milk = (latte_ingredients["milk"])
+latte_coffee = (latte_ingredients["coffee"])
+latte_cost = (MENU["latte"]["cost"])
+
+cappuccino_ingredients = (MENU["cappuccino"]["ingredients"])
+cappuccino_water = (cappuccino_ingredients["water"])
+cappuccino_milk = (cappuccino_ingredients["milk"])
+cappuccino_coffee = (cappuccino_ingredients["coffee"])
+cappuccino_cost = (MENU["cappuccino"]["cost"])
+
+water = (resources["water"])
+milk = (resources["milk"])
+coffee = (resources["coffee"])
+rep = (resources)
+
+money = 0
+
+
+def order():
+    customer_order = input("What would you like? (espresso/latte/cappuccino): ")
+    if customer_order == "espresso":
+        espresso()
+    if customer_order == "latte":
+        latte()
+    if customer_order == "cappuccino":
+        cappuccino()
+    if customer_order == "report":
+        report()
+    if customer_order == "off":
+        return
+
+def espresso():
+   global water
+   global coffee
+   if water >= 50 and coffee >= 18:
+       pay = int(input("please insert money."))
+       if pay < espresso_cost:
+           print("Sorry that's not enough money. Money refunded")
+           return
+       elif pay == espresso_cost:
+           print("Enjoy your espresso ☕️")
+           global money
+           money += pay
+           water -= 50
+           coffee -= 18
+           order()
+       else:
+           change = round(pay - espresso_cost, 2)
+           print("Enjoy your espresso ☕️")
+           print (f"Here is your ${change} in change.")
+           money += pay
+           water -= 50
+           coffee -= 18
+           order()
+
+   elif water >= 50 and coffee < 18:
+        print("Sorry, there isn't enough coffee")
+
+   elif water < 50 and coffee >= 18:
+       print("Sorry, there isn't enough water")
+
+   else:
+       print("Sorry, there isn't enough water and coffee")
+
+
+def latte():
+    global water
+    global coffee
+    global milk
+    if water >= 200 and coffee >= 24 and milk >= 150:
+       pay = int(input("please insert money."))
+       if pay < latte_cost:
+           print("Sorry that's not enough money. Money refunded")
+           return
+       elif pay == latte_cost:
+           print("Enjoy your latte ☕️")
+           global money
+           money += pay
+           water -= 200
+           coffee -= 24
+           milk -= 150
+           order()
+       else:
+           change = round(pay - latte_cost, 2)
+           print("Enjoy your latte ☕️")
+           water -= 200
+           coffee -= 24
+           milk -= 150
+           print (f"Here is your ${change} in change.")
+           money += pay
+           order()
+    elif water >= 200 and coffee >= 24 and milk < 150:
+        print("Sorry, there isn't enough milk")
+    elif water >= 200 and coffee < 24 and milk >= 150:
+       print("Sorry, there isn't enough coffee")
+    elif water < 200 and coffee >= 24 and milk >= 150:
+       print("Sorry, there isn't enough water")
+    elif water < 200 and coffee < 24 and milk >= 150:
+       print("Sorry, there isn't enough water and coffee")
+    elif water < 200 and coffee >= 24 and milk < 150:
+       print("Sorry, there isn't enough water and milk")
+    elif water >= 200 and coffee < 24 and milk < 150:
+       print("Sorry, there isn't enough coffee and milk")
+    else:
+       print("Sorry, there isn't enough water, coffee and milk")
+
+def cappuccino():
+    global water
+    global milk
+    global coffee
+    if water >= 250 and coffee >= 24 and milk >= 100:
+       pay = int(input("please insert money."))
+       if pay < cappuccino_cost:
+           print("Sorry that's not enough money. Money refunded")
+           return
+       elif pay == cappuccino_cost:
+           print("Enjoy your cappuccino ☕️")
+           global money
+           money += pay
+           water -= 250
+           coffee -= 24
+           milk -= 100
+           order()
+       else:
+           change = round(pay - cappuccino_cost, 2)
+           print("Enjoy your cappuccino ☕️")
+           print (f"Here is your ${change} in change.")
+           money += pay
+           money += pay
+           water -= 250
+           coffee -= 24
+           milk -= 100
+           order()
+    elif water >= 250 and coffee >= 24 and milk < 100:
+        print("Sorry, there isn't enough milk")
+    elif water >= 250 and coffee < 24 and milk >= 100:
+       print("Sorry, there isn't enough coffee")
+    elif water < 250 and coffee >= 24 and milk >= 100:
+       print("Sorry, there isn't enough water")
+    elif water < 250 and coffee < 24 and milk >= 100:
+       print("Sorry, there isn't enough water and coffee")
+    elif water < 250 and coffee >= 24 and milk < 100:
+       print("Sorry, there isn't enough water and milk")
+    elif water >= 250 and coffee < 24 and milk < 100:
+       print("Sorry, there isn't enough coffee and milk")
+    else:
+       print("Sorry, there isn't enough water, coffee and milk")
+
+def report():
+    print( f"Water: {water}ml\nCoffee: {coffee}g\nMilk: ${milk}ml\nMoney: ${money}")
+    order()
+
+order ()
+
+
+
+
