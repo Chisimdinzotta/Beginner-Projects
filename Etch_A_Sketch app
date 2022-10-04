@@ -34,3 +34,7 @@ while race_on:
       turtle.forward(random_distance)
 
 screen.exitonclick()
+
+#The app from 5 turtles of different colours from a starting point x=-330 forward. The finish line is x = 250. The a turtle passes  this finish line, they all stop moving and the game ends. The turtle (represented by a colour) that passed the finish line wins.  
+
+#The player would have been propped to guess the winner turtle before the game starts. If their guess was right, they win. If next, well, they lose!
